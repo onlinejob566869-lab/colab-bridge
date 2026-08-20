@@ -2,17 +2,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Colab Bridge</title>
+<title>Colab Bridge — API</title>
 <style>
-body{font-family:sans-serif;text-align:center;padding:50px;background:#1a1a2e;color:#eee}
-a{color:#0ff;font-size:1.2em}
-.box{max-width:600px;margin:0 auto;background:#16213e;padding:30px;border-radius:10px}
+body{font-family:sans-serif;text-align:center;padding:50px;background:#0d1117;color:#c9d1d9}
+a{color:#58a6ff;font-size:1.1em;word-break:break-all}
+.box{max-width:600px;margin:0 auto;background:#161b22;padding:30px;border-radius:12px;border:1px solid #30363d}
+code{background:#21262d;padding:2px 8px;border-radius:4px;color:#7ee787}
 </style>
 </head>
 <body>
 <div class="box">
-<h1>🖥️ Colab Bridge</h1>
-<p>Redirecting to current Colab session...</p>
+<h1>🔌 Colab API Bridge</h1>
+<p>Current API endpoint for the active Colab session:</p>
 <div id="status">Loading...</div>
 </div>
 <script>
@@ -20,13 +21,13 @@ fetch("urls.json")
 .then(r=>r.json())
 .then(data=>{
   document.getElementById("status").innerHTML =
-    "<h3>API</h3><a href=\""+data.api_url+"\" target=\"_blank\">"+data.api_url+"</a>" +
-    "<h3>Desktop</h3><a href=\""+data.novnc_url+"\" target=\"_blank\">"+data.novnc_url+"</a>" +
-    "<p>Token: "+data.token+"</p><p>VNC Pass: "+data.vnc_pass+"</p>" +
-    "<p>Updated: "+data.updated+"</p>";
+    "<h3>API URL</h3><a href=\"" + data.api_url + "\" target=\"_blank\">" + data.api_url + "</a>" +
+    "<h3>Token</h3><code>" + data.token + "</code>" +
+    "<p style=\"color:#8b949e;font-size:0.9em\">Updated: " + data.updated + "</p>" +
+    "<p style=\"margin-top:20px\">Give this URL + token to the agent.</p>";
 })
 .catch(e=>{
-  document.getElementById("status").innerHTML="<p style=\"color:#f44\">Colab not running. Start the notebook first.</p>";
+  document.getElementById("status").innerHTML="<p style=\"color:#f85149\">Colab not running. Start the notebook first.</p>";
 });
 </script>
 </body>
